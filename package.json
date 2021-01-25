@@ -3,9 +3,8 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "test": "npm run test:watch -- --colors",
-    "test:watch": "npx jest --watch",
-    "test:once": "npx jest"
+    "test": "npm run watch -- --colors --collect-coverage",
+    "watch": "npx jest --watch"
   },
   "dependencies": {
     "jest": "^26.6.3"
