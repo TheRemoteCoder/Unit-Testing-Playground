@@ -1,11 +1,4 @@
 /*
-1. Decide tiny aspects + Limitations (data requirements, responsibilities)
-2. Define input/output of feature (data types, structures, results)
-   Define function signature (parameters, variants)
-3. Define test case for each tiny feature (including misuse + expected fails)
-4. Write code
-
----
 
 1.
 - Have: Word list [A, B, ...]
@@ -32,7 +25,7 @@ const WordSearch = require('./word-search');
 
 describe('Word search', () => {
   const words = [
-    'Apple',
+    'apple',
     'Apricot',
     'Avocado',
     'Banana',
@@ -55,12 +48,12 @@ describe('Word search', () => {
 
   test('2 results for letter combination available > 1 times', () => {
     const result = wordSearch.search('Ap');
-    expect(result).toStrictEqual(['Apple', 'Apricot']);
+    expect(result).toStrictEqual(['apple', 'Apricot']);
   });
 
   test('1 result for letter combination available = 1 time', () => {
     const result = wordSearch.search('App');
-    expect(result).toStrictEqual(['Apple']);
+    expect(result).toStrictEqual(['apple']);
   });
 
 });

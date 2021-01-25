@@ -1,6 +1,7 @@
 class WordSearch {
   constructor(words) {
-    this.words = words;
+    this.words     = words;
+    this.minLength = 2;
   }
 
   search(text) {
@@ -13,8 +14,8 @@ class WordSearch {
   
   getWords(text) {
     let results = this.words
-      .filter(word => text.length >= 2)
-      .filter(word => word.startsWith(text));
+      .filter(word => text.length >= this.minLength)
+      .filter(word => word.toLowerCase().startsWith(text.toLowerCase()));
 
     return results;
   }
