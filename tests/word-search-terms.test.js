@@ -6,6 +6,8 @@
  * - Need at least 2 letters to start searching
  * - Get 1-N word(s) that start with letters
  * - Return empty list for no results []
+ * - Remove potential duplicates
+ * - Order result A-Z
  *
  * 2. + 3.
  * - constructor(array[[string] => string] wordsTerms)
@@ -19,18 +21,17 @@
  */
 const WordSearchTerms = require('./word-search-terms');
 
-const wordsTerms = [
-  'apple'   => ['Red', 'Yellow'],
-  'Apricot' => ['Orange', 'Pink'],
-  'Avocado' => ['Brown', 'Green', 'Lime'],
-  '草莓',    => ['红'],
-  ''        => [''],
-];
+const wordsTerms = {
+  'apple'   : ['Red', 'Yellow'],
+  'Apricot' : ['Orange', 'Pink', 'Red'],
+  'Avocado' : ['Brown', 'Green', 'Lime'],
+  '草莓'     : ['红'],
+  ''        : [''],
+};
 
 const instance = new WordSearchTerms(wordsTerms);
 
 describe('Word search - Terms', () => {
-
   test('no results for empty value', () => {
     const result = instance.search('');
 
@@ -46,7 +47,13 @@ describe('Word search - Terms', () => {
   test('4 terms of 2 results with combined terms', () => {
     const result = instance.search('Ap');
 
-    expect(result).toStrictEqual(['Red', 'Yellow', 'Orange', 'Pink']);
+    expect(result).toStrictEqual(['Orange', 'Pink', 'Red', 'Yellow']);
+  });
+
+  test('3 terms of 1 result with sanitized input', () => {
+    const result = instance.search(' Av ');
+
+    expect(result).toStrictEqual(['Brown', 'Green', 'Lime']);
   });
 
   test('1 term of 1 result with multibyte', () => {
@@ -54,6 +61,6 @@ describe('Word search - Terms', () => {
 
     expect(result).toStrictEqual(['红']);
   });
-
 });
+
 
