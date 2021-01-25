@@ -9,19 +9,13 @@ class WordSearchTerms {
       return [];
     }
 
-    return this.getTerms(this.getSanitized(text));
+    return this.getTerms(this.normalize(text));
   }
-  
-  /**
-   * Find all terms for matching text parts.
-   * - Compare lowercase to ignore typos
-   * - Only return unique values
-   * - Sort return A-Z
-   */
+
   getTerms(text) {
     const wordsTerms = Object.entries(this.wordsTerms);
     let result       = [];
-    
+
     for (const [key, val] of wordsTerms) {
       if (key.toLowerCase().startsWith(text)) {
         result.push(...val);
@@ -30,16 +24,17 @@ class WordSearchTerms {
 
     return [...new Set(result)].sort();
   }
-  
-  getSanitized(text) {
-    return text.toLowerCase().trim();
+
+  normalize(input) {
+    return input.toLowerCase().trim();
   }
-  
-  isEmpty(text) {
+
+  isEmpty(input) {
+    const text = this.normalize(input);
+
     return !text || text.length < this.minLength;
   }
 }
 
 
 module.exports = WordSearchTerms;
-
