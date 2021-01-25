@@ -8,7 +8,7 @@
  * - Return empty list for no results []
  *
  * 2. + 3.
- * - constructor(array[string] words)
+ * - constructor(array[[string] => string] wordsTerms)
  * - getTerms(string text): array[string]
  *
  * 4.
@@ -17,19 +17,20 @@
  * - 2 results  : 'Ap'
  * - 1 result   : 'App'
  */
-const WordSearch = require('./word-search');
+const WordSearchTerms = require('./word-search-terms');
 
-const words = [
-  'apple',
-  'Apricot',
-  'Avocado',
-  '草莓',
-  '',
+const wordsTerms = [
+  'apple'   => ['Red', 'Yellow'],
+  'Apricot' => ['Orange', 'Pink'],
+  'Avocado' => ['Brown', 'Green', 'Lime'],
+  '草莓',    => ['红'],
+  ''        => [''],
 ];
 
-const instance = new WordSearch(words);
+const instance = new WordSearchTerms(wordsTerms);
 
-describe('Word search', () => {
+describe('Word search - Terms', () => {
+
   test('no results for empty value', () => {
     const result = instance.search('');
 
@@ -42,16 +43,17 @@ describe('Word search', () => {
     expect(result).toStrictEqual([]);
   });
 
-  test('2 results for letter combination available > 1 times', () => {
+  test('4 terms of 2 results with combined terms', () => {
     const result = instance.search('Ap');
 
-    expect(result).toStrictEqual(['apple', 'Apricot']);
+    expect(result).toStrictEqual(['Red', 'Yellow', 'Orange', 'Pink']);
   });
 
-  test('1 result for letter combination available = 1 time', () => {
-    const result = instance.search('App');
+  test('1 term of 1 result with multibyte', () => {
+    const result = instance.search('草莓');
 
-    expect(result).toStrictEqual(['apple']);
+    expect(result).toStrictEqual(['红']);
   });
+
 });
 
