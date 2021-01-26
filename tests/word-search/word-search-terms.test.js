@@ -74,6 +74,6 @@ describe('Word search - Terms', () => {
   test('1 term of 1 result with multibyte', () => {
     const result = instance.search('草莓');
 
-    expect(result).toStrictEqual(['红']);
+    expect(result).toStrictEqual(['红', '👌']);
   });
 });

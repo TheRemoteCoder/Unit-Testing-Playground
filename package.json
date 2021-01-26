@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "test": "npm run watch -- --colors --collect-coverage",
+    "test:all": "npm run watch:all -- --colors --collect-coverage",
     "watch": "npx jest --watch",
+    "watch:all": "npx jest --watchAll",
     "debug": "node --inspect-brk --inspect ./node_modules/jest/bin/jest -i",
     "lint": "npx eslint \"src/**\"",
     "project:clean": "rm -rf dist",
