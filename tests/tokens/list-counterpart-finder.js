@@ -15,7 +15,7 @@ class ListCounterpartFinder {
   }
 
   getWordsFromCounterpartList(text) {
-    result = [];
+    let result = [];
 
     this.wordLists.forEach((words, index, all) => {
       const isMatch = words.some((word) => word === text);

@@ -64,13 +64,13 @@ const instance = new ListCounterpartFinder(wordLists);
 
 describe('List Counterpart Finder – Expect results', () => {
   test('word from list A for word of list B', () => {
-    const result = instance.search('aa');
+    const result = instance.getCounterpartWords('aa');
 
     expect(result).toStrictEqual(['b', 'BB']);
   });
 
   test('word from list B for word of list A', () => {
-    const result = instance.search('b');
+    const result = instance.getCounterpartWords('b');
 
     expect(result).toStrictEqual(['A', 'aa', 'A1']);
   });
@@ -78,19 +78,19 @@ describe('List Counterpart Finder – Expect results', () => {
 
 describe('List Counterpart Finder – Expect no results', () => {
   test('for empty value', () => {
-    const result = instance.search('');
+    const result = instance.getCounterpartWords('');
 
-    expect(result).toStrictEqual();
+    expect(result).toStrictEqual([]);
   });
 
   test('for whitespace only', () => {
-    const result = instance.search(' ');
+    const result = instance.getCounterpartWords(' ');
 
     expect(result).toStrictEqual([]);
   });
 
   test('for word not in any list', () => {
-    const result = instance.search('X');
+    const result = instance.getCounterpartWords('X');
 
     expect(result).toStrictEqual([]);
   });
