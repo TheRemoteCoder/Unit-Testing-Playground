@@ -1,0 +1,37 @@
+{
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": false,
+  "editor.detectIndentation": false,
+  "editor.insertSpaces": false,
+  "editor.useTabStops": false,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "files.associations": {
+    ".*intrc": "json"
+  },
+  "css.validate": false,
+  "json.format.enable": true,
+  "less.validate": false,
+  "javascript.validate.enable": false,
+  "scss.validate": false,
+  "stylelint.enable": true,
+  "htmlhint.documentSelector": [
+    "html"
+  ],
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.acceptSuggestionOnEnter": "off"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": true
+    }
+  }
+}
