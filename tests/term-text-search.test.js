@@ -4,7 +4,7 @@
  * - Caret : Cursor position in text (numeric)
  * - Term  : User input, any string value, can be empty
  * - Token : Matched part of term (part left, part right)
- * - Word  : Result (combined tokens, if any)
+ * - Text  : Result (combined tokens, if any)
  *
  * ###
  *
@@ -13,6 +13,7 @@
  *
  * Required
  * - Input data expectations + assumptions:
+ *   - Text can be anything (including special characters, numbers, ...)
  *   - All values are strings
  *   - Term can be empty
  *   - Multi-byte support (= No RegEx for a-z possible)
@@ -39,7 +40,7 @@
  *
  * Pseudo-type annotations similar to TypeScript/Flow:
  * - constructor()
- * - getWordAtCaretPosition(string text, uint caretPosition): string
+ * - getTextAtCaretPosition(string text, uint caretPosition): string
  *
  * ###
  *
@@ -52,20 +53,21 @@
  * - No result : ''    : *              | Empty
  * - No result : ' '   : *              | Whitespace
  * - No result : ' A ' : Before         | Whitespace
- * - No result : ' A ' : After          | Whitespace
+ * - No result : ' 1 ' : After          | Whitespace – Numeric
  * - Result    : 'A'   : Before         | Match (right)
- * - Result    : 'A'   : After          | Match (left)
+ * - Result    : '1'   : After          | Match (left) – Numeric
  * - Result    : 'AA'  : Inner          | Match (left + right)
+ * - Result    : '#'   : Before         | Match (right) – Special character
  * - ---------- : ---- : --------------------------------------
  */
 const TermTextSearch = require('./term-text-search');
 
 const instance = new TermTextSearch();
 
-describe('xxx', () => {
+describe('Term text search', () => {
 
-  test('', () => {
-    //const result = instance.search('');
+  test('no result for empty text', () => {
+    //const result = instance.getTextAtCaretPosition('');
     //expect(result).toStrictEqual([]);
   });
 
