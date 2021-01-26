@@ -2,9 +2,9 @@
  * 0. Definitions
  *
  * - Caret : Cursor position in text (numeric)
- * - Term  : User input, any string value, can be empty
+ * - Text  : User input, any string value, can be empty
  * - Token : Matched part of term (part left, part right)
- * - Text  : Result (combined tokens, if any)
+ * - Term  : Result (combined tokens, if any)
  *
  * ###
  *
@@ -17,7 +17,6 @@
  *   - All values are strings
  *   - Term can be empty
  *   - Multi-byte support (= No RegEx for a-z possible)
- *   - Arrow symbol constant value = '->'
  *   - Caret position must be numeric (0-N)
  * - Term = Standalone part of full text
  *   - Boundary by whitespace before and/or after
@@ -41,7 +40,7 @@
  *
  * Pseudo-type annotations similar to TypeScript/Flow:
  * - constructor()
- * - getTextAtCaretPosition(string text, uint caretPosition): string
+ * - getTermAtCaretPosition(string text, uint caretPosition): string
  *
  * ###
  *
@@ -64,39 +63,39 @@ const instance = new TermTextSearch();
 
 describe('Term text search – Expect results', () => {
   test('for single letter text (from right)', () => {
-    const result = instance.getTextAtCaretPosition('#', 1);
+    const result = instance.getTermAtCaretPosition('#', 1);
     expect(result).toStrictEqual('#');
   });
 
   test('for within text', () => {
-    const result = instance.getTextAtCaretPosition('A1', 1);
+    const result = instance.getTermAtCaretPosition('A1', 1);
     expect(result).toStrictEqual('A1');
   });
 
   test('for multi-byte text (from left)', () => {
-    const result = instance.getTextAtCaretPosition('👍', 0);
+    const result = instance.getTermAtCaretPosition('👍', 0);
     expect(result).toStrictEqual('👍');
   });
 });
 
 describe('Term text search – Expect no results', () => {
   test('for empty text', () => {
-    const result = instance.getTextAtCaretPosition('', 0);
+    const result = instance.getTermAtCaretPosition('', 0);
     expect(result).toStrictEqual('');
   });
 
   test('for whitespace text', () => {
-    const result = instance.getTextAtCaretPosition(' ', 1);
+    const result = instance.getTermAtCaretPosition(' ', 1);
     expect(result).toStrictEqual('');
   });
 
   test('for word surrounded by whitespaces', () => {
-    const result = instance.getTextAtCaretPosition(' A ', 3);
+    const result = instance.getTermAtCaretPosition(' A ', 3);
     expect(result).toStrictEqual('');
   });
 
   test('for word surrounded by whitespaces', () => {
-    const result = instance.getTextAtCaretPosition(' A ', 3);
+    const result = instance.getTermAtCaretPosition(' A ', 3);
     expect(result).toStrictEqual('');
   });
 });

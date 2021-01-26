@@ -1,20 +1,24 @@
 class TermTextSearch {
   constructor() {}
 
-  getTextAtCaretPosition(text, caretPosition) {
+  getTermAtCaretPosition(text, caretPosition) {
     if (this.isEmpty(text) || !this.isValidCaretPosition(caretPosition)) {
       return '';
     }
 
-    this.getText(this.normalize(text), caretPosition);
+    return this.getTerm(text, caretPosition);
   }
 
-  getText(text, caretPosition) {
-    return '';
-  }
+  getTerm(text, caretPosition) {
+    const textBefore = text.slice(0, caretPosition);
+    const textAfter = text.slice(caretPosition, text.length);
+    const textPartsBefore = textBefore.split(' ');
+    const textPartsAfter = textAfter.split(' ');
 
-  normalize(input) {
-    return input.toLowerCase().trim();
+    const termPartBefore = textPartsBefore[textPartsBefore.length - 1];
+    const termPartAfter = textPartsAfter[0];
+
+    return termPartBefore.concat(termPartAfter);
   }
 
   isValidCaretPosition(caretPosition) {
@@ -22,7 +26,7 @@ class TermTextSearch {
   }
 
   isEmpty(input) {
-    const text = this.normalize(input);
+    const text = input.trim();
 
     return !text || text.length < this.minLength;
   }
