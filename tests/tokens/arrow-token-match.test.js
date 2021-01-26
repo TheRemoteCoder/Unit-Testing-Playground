@@ -23,12 +23,12 @@
  *   - Multi-byte support (= No RegEx for a-z possible)
  *   - Arrow symbol constant value = '->'
  * - Matching term can be followed by an arrow (but not preceeded)
- * - Minimum term length = least 1-3 letters to start searching (2 already used for arrow, min. +1 extra needed)
+ * - Minimum term length = At least 1 letters to start searching (2 already used for arrow, min. +1 extra needed)
  *   - Covers cases: A, ->A, A->, A->B
- * - Feature 1
+ * - Feature 1 (Data)
  *   - Return/Getter for various features
  *     - Token : if any; left/right position
- *     - Term  : Without token
+ *     - Term  : Text without token
  * - Feature 2 (Single token)
  *   - Return single value WITH token (if none exists before)
  *   - Return single value WITHOUT token (if one exists before as last part of word / word end)
