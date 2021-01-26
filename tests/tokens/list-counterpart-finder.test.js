@@ -35,7 +35,8 @@
  * 3. Define function signatures (parameters, variants)
  *
  * Pseudo-type annotations similar to TypeScript/Flow:
- * -
+ * - constructor(object wordLists)
+ * - getCounterpartWords(string text): array
  *
  * ###
  *
@@ -55,15 +56,42 @@
 const ListCounterpartFinder = require('./list-counterpart-finder');
 
 const wordLists = {
-  a: ['A', 'AA', 'A1'],
-  b: ['B', 'BB', 'B1'],
+  a: ['A', 'aa', 'A1'],
+  b: ['b', 'BB', ''],
 };
 
 const instance = new ListCounterpartFinder(wordLists);
 
-describe('xxx', () => {
-  test('', () => {
-    //const result = instance.search('');
-    //expect(result).toStrictEqual([]);
+describe('List Counterpart Finder – Expect results', () => {
+  test('word from list A for word of list B', () => {
+    const result = instance.search('aa');
+
+    expect(result).toStrictEqual(['b', 'BB']);
+  });
+
+  test('word from list B for word of list A', () => {
+    const result = instance.search('b');
+
+    expect(result).toStrictEqual(['A', 'aa', 'A1']);
+  });
+});
+
+describe('List Counterpart Finder – Expect no results', () => {
+  test('for empty value', () => {
+    const result = instance.search('');
+
+    expect(result).toStrictEqual();
+  });
+
+  test('for whitespace only', () => {
+    const result = instance.search(' ');
+
+    expect(result).toStrictEqual([]);
+  });
+
+  test('for word not in any list', () => {
+    const result = instance.search('X');
+
+    expect(result).toStrictEqual([]);
   });
 });
