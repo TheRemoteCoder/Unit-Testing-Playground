@@ -55,7 +55,7 @@
  * - No results : ''    : Empty
  * - No results : ' '   : No token
  * - No results : 'A'   : No token
- * - No results : '->'  : Token (only)    <- Special case - How to handle?
+ * - No results : '->'  : Token (only)   : 1) Special case - Could be ignored, e.g. require min. length 3
  * - Results    : '->A' : Token at start
  * - Results    : 'A->' : Token at end
  * - ---------- : ----- : --------------
@@ -64,16 +64,31 @@ const ArrowTokenMatch = require('./arrow-token-match');
 
 const instance = new ArrowTokenMatch();
 
-describe('Arrow token match', () => {
-  test('', () => {
-    //const result = instance.search('');
-    //expect(result).toStrictEqual([]);
+describe('Arrow token match – Expect true', () => {
+  test('for token at start', () => {
+    const result = instance.hasArrow('->A');
+    expect(result).toStrictEqual(true);
+  });
+
+  test('for token at end', () => {
+    const result = instance.hasArrow('A->');
+    expect(result).toStrictEqual(true);
+  });
+
+  test('for token without text', () => {
+    const result = instance.hasArrow('->');
+    expect(result).toStrictEqual(true);
   });
 });
 
 describe('Arrow token match – Expect false', () => {
   test('for empty text', () => {
     const result = instance.hasArrow('');
+    expect(result).toStrictEqual(false);
+  });
+
+  test('for whitespace-only text', () => {
+    const result = instance.hasArrow(' ');
     expect(result).toStrictEqual(false);
   });
 
