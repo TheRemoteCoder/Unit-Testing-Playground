@@ -1,30 +1,31 @@
 class ListCounterpartFinder {
   /**
-   * @param {Object} wordLists {a:[string], b:[string]}
+   * @param {Object} wordLists [[string]]
    */
   constructor(wordLists) {
     this.wordLists = wordLists;
   }
 
-  XXXsearch(text) {
+  getCounterpartWords(text) {
     if (this.isEmpty(text)) {
       return [];
     }
 
-    return this.getTerms(this.normalize(text));
+    return this.getWordsFromCounterpartList(this.normalize(text));
   }
 
-  XXXgetTerms(text) {
-    const wordsTerms = Object.entries(this.wordsTerms);
-    let result = [];
+  getWordsFromCounterpartList(text) {
+    result = [];
 
-    for (const [key, val] of wordsTerms) {
-      if (key.toLowerCase().startsWith(text)) {
-        result.push(...val);
+    this.wordLists.forEach((words, index, all) => {
+      const isMatch = words.some((word) => word === text);
+
+      if (isMatch) {
+        result = all;
       }
-    }
+    });
 
-    return [...new Set(result)].sort();
+    return result;
   }
 
   normalize(input) {

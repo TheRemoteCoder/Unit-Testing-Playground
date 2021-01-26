@@ -55,10 +55,10 @@
  */
 const ListCounterpartFinder = require('./list-counterpart-finder');
 
-const wordLists = {
-  a: ['A', 'aa', 'A1'],
-  b: ['b', 'BB', ''],
-};
+const wordLists = [
+  ['A', 'aa', 'A1'],
+  ['b', 'BB', ''],
+];
 
 const instance = new ListCounterpartFinder(wordLists);
 
