@@ -3,8 +3,7 @@
  *
  * - Caret : Cursor position in text (numeric)
  * - Text  : User input, any string value, can be empty
- * - Token : Matched part of term (part left, part right)
- * - Term  : Result (combined tokens, if any)
+ * - Term  : Result (combined text parts, if any)
  *
  * ###
  *
