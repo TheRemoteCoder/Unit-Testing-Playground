@@ -95,4 +95,10 @@ describe('List Counterpart Finder – Expect no results', () => {
 
     expect(result).toStrictEqual([]);
   });
+
+  test('for invalid word list', () => {
+    expect(() => {
+      new ListCounterpartFinder([]);
+    }).toThrow();
+  });
 });

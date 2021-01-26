@@ -16,6 +16,10 @@ class ListCounterpartFinder {
     return this.getWordsFromCounterpartList(this.normalize(text));
   }
 
+  /**
+   * Match text with both word lists.
+   * If a match is found, return words of opposite list.
+   */
   getWordsFromCounterpartList(text) {
     let result = [];
 
@@ -38,6 +42,12 @@ class ListCounterpartFinder {
     const text = this.normalize(input);
 
     return !text;
+  }
+
+  validateWordLists() {
+    if (this.wordLists.length !== 2) {
+      throw Error('Word list requires exact two indexes');
+    }
   }
 }
 
