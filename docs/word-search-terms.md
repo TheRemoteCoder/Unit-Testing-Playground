@@ -3,9 +3,7 @@
 TDD-focused mini tutorial for an imaginary, minimal feature described below.
 Based on the '5 Step Method' described on [CodeUtopia](https://codeutopia.net/blog/2016/10/10/5-step-method-to-make-test-driven-development-and-unit-testing-easy).
 
-**Scope**
-
-Deeply think about features, expectations and limitations first. Code last.
+Scope: Deeply think about features, expectations and limitations first. Code last.
 
 ## Example
 
@@ -23,7 +21,7 @@ Create a search engine, that returns a set of keywords for matching words. Multi
 
 ### Step 1
 
-Decide tiny aspects and limitations: Business and data requirements, 
+Decide tiny aspects and limitations: Business and data requirements,
 responsibilities and scope, domain specific feature needs.
 
 - Input data: Word list with terms
@@ -83,13 +81,13 @@ Code – See below and attached source files.
      *(Hardcoding data here can be a good thing, as these won't unexpectedly mutate over time or across environments)*
    - Start with just the text (expectations)
 3. Fill in pseudo-code (yet) in test cases (steps 2+3)
-4. Start the CLI and instruct it to watch the tests 
+4. Start the CLI and instruct it to watch the tests
    - Not needed, but somehow rewarding to see things turning green over time :)
 5. Start implementing the real code (step 5)
    - Start with the simplest features
      - Try to get intentionally broken tests out of the way first
        (e.g. quit early if inputs are invalid or empty, don't pass on raw data)
-   - Add 'ornamental code' last (e.g. anything that improves the code, 
+   - Add 'ornamental code' last (e.g. anything that improves the code,
      without potentially changing the test results – like refactoring optimizations)
      - Relates to: 'Red, Green, Refactor' cycle
    - Check in with the CLI regularly
@@ -154,4 +152,3 @@ There are tons of tools and services out there. Named are just a few to show wha
 
 - [Jest](https://jestjs.io)
 - [PhpUnit](https://phpunit.de)
-
