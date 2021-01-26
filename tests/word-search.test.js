@@ -18,7 +18,6 @@
  * - 1 result   : 'App'
  */
 const WordSearch = require('./word-search');
-
 const words = [
   'apple',
   'Apricot',

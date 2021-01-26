@@ -1,19 +1,13 @@
 /**
- * Based on the '5 Step Method' described on 'CodeUtopia':
- * @see https://codeutopia.net/blog/2016/10/10/5-step-method-to-make-test-driven-development-and-unit-testing-easy
- *
- * ---
- *
- * 1. Decide tiny aspects and limitations: Business and data requirements, 
+ *1. Decide tiny aspects and limitations: Business and data requirements,
  * responsibilities and scope, domain specific feature needs.
  *
- * - Input data: Word list with terms
- *   - Data expectations/Assumptions: 
- *     - All values are strings (no other data types)
- *     - List can have empty values
- *     - List and terms can be unsorted
- *     - Upper/Lowercase mixed
- *     - Can be multi-byte (just to consider it, not really thought of here)
+ * - Input data expectations/Assumptions:
+ *   - All values are strings (no other data types)
+ *   - List can have empty values
+ *   - List and terms can be unsorted
+ *   - Upper/Lowercase mixed
+ *   - Can be multi-byte (just to consider it, not really thought of here)
  * - Need at least 2 letters to start searching
  * - Get 1-N word(s) that start with letters
  * - Return empty list for no results []
