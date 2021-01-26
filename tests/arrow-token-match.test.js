@@ -6,9 +6,12 @@
  * - Token : Matched part(s) – Arrow or term
  * - Term  : String value, without token
  *
+ * 1. Use case / Scenario
+ * - Given a text, test if it has an arrow character at any position
+ *
  * ###
  *
- * 1. Decide tiny aspects and limitations: Business and data requirements,
+ * 2. Decide tiny aspects and limitations: Business and data requirements,
  * responsibilities and scope, domain specific feature needs.
  *
  * Required
@@ -32,44 +35,50 @@
  *
  * ###
  *
- * 2. Define input/output of aspects (data types, structures, results)
- * 3. Define function signatures (parameters, variants)
+ * 3. Define input/output of aspects (data types, structures, results)
+ * 4. Define function signatures (parameters, variants)
  *
  * Pseudo-type annotations similar to TypeScript/Flow:
- * - hasArrow(string text): bool
- * - startsWithArrow(string text): bool
- * - endsWithArrow(string text): bool
+ * - getArrow(string text): {hasArrow: boolean, position: 'start'|'end'}
+ * - hasArrow(string text): boolean
+ * - startsWithArrow(string text): boolean
+ * - endsWithArrow(string text): boolean
  *
  * ###
  *
- * 4. Define edge test cases for tiny aspects (including misuse and expected fails).
+ * 5. Define edge test cases for tiny aspects (including misuse and expected fails).
  * For sake of simplicity, no other data types have been considered here.
  *
  * - ---------- : ----- : --------------
  * - Expect     : Value : Reason
  * - ---------- : ----- : --------------
  * - No results : ''    : Empty
- * - No results : 'AA'  : Too short
- * - No results : 'AAA' : Word not found
+ * - No results : ' '   : No token
+ * - No results : 'A'   : No token
+ * - No results : '->'  : Token (only)    <- Special case - How to handle?
+ * - Results    : '->A' : Token at start
+ * - Results    : 'A->' : Token at end
  * - ---------- : ----- : --------------
  */
-const TokenMatch = require('./token-match');
+const ArrowTokenMatch = require('./arrow-token-match');
 
-// - Word followed by Arrow and another Word
-// - Arrow = '->' (2 chars) -> Beware potential escaping issues!
-// - Word  = Alphabetical chars, Roman basic (ASCII)
-// - Word != Non-alphabetical chars or other alphabets
-// - Word  = All have equal length (2 chars)
-const wordLists = {
-  A: ['AA+BB', 'Ä+B'],
-  B: ['BB+AA', 'B+Ä'],
-};
+const instance = new ArrowTokenMatch();
 
-const instance = new TokenMatch();
-
-describe('xxx', () => {
+describe('Arrow token match', () => {
   test('', () => {
     //const result = instance.search('');
     //expect(result).toStrictEqual([]);
+  });
+});
+
+describe('Arrow token match – Expect false', () => {
+  test('for empty text', () => {
+    const result = instance.hasArrow('');
+    expect(result).toStrictEqual(false);
+  });
+
+  test('for text without token', () => {
+    const result = instance.hasArrow('A');
+    expect(result).toStrictEqual(false);
   });
 });
