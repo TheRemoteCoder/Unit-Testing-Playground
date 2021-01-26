@@ -51,22 +51,35 @@
  * 6. Define edge test cases for tiny aspects (including misuse and expected fails).
  * For sake of simplicity, no other data types have been considered here.
  *
- * - ---------- : ----- : --------------
- * - Expect     : Value : Reason
- * - ---------- : ----- : --------------
- * - No results : ''    : Empty
- * - No results : ' '   : No token
- * - No results : 'A'   : No token
- * - No results : '->'  : Token (only)   : 1) Special case - Could be ignored, e.g. require min. length 3
- * - Results    : '->A' : Token at start
- * - Results    : 'A->' : Token at end
- * - ---------- : ----- : --------------
+ * - ---------- : ------ : ------------------------------------------
+ * - Expect     : Value  : Reason
+ * - ---------- : ------ : ------------------------------------------
+ * - No results : ''     : Empty
+ * - No results : ' '    : No token
+ * - No results : 'A'    : No token
+ * - No results : '->'   : Token (only) – 1)
+ * - Results    : '->A'  : Token at start
+ * - Results    : 'A->'  : Token at end
+ * - Results    : 'A->B' : Token in inner (anywhere; not first/last)
+ * - ---------- : ----- : ------------------------------------------
+ *
+ * 1) Special case - Could be ignored, e.g. require min. length 3
  */
 const ArrowTokenMatch = require('./arrow-token-match');
 
 const instance = new ArrowTokenMatch();
 
 describe('Arrow token match – Expect data', () => {
+  test('for token at start', () => {
+    const result = instance.getDetails('A->B');
+
+    expect(result).toStrictEqual({
+      hasArrow: true,
+      position: 'inner',
+      term: '',
+    });
+  });
+
   test('for token at start', () => {
     const result = instance.getDetails('->A');
 

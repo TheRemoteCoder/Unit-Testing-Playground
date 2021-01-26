@@ -5,6 +5,7 @@ class ArrowTokenMatch {
     this.positionIdentifier = {
       start: 'start',
       end: 'end',
+      inner: 'inner',
     };
 
     this.arrowData = {
@@ -45,6 +46,8 @@ class ArrowTokenMatch {
       position = this.positionIdentifier.start;
     } else if (this.hasEndArrow(text)) {
       position = this.positionIdentifier.end;
+    } else if (this.hasInnerArrow(text)) {
+      position = this.positionIdentifier.inner;
     }
 
     return position;
@@ -56,6 +59,10 @@ class ArrowTokenMatch {
 
   hasEndArrow(text) {
     return text.endsWith(this.arrowToken);
+  }
+
+  hasInnerArrow(text) {
+    return text.includes(this.arrowToken);
   }
 
   isEmpty(input) {
