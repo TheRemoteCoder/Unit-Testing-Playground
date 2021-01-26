@@ -9,9 +9,11 @@
  * 1. Use case / Scenario
  * - Given a text, test if it has an arrow character at any position
  *
+ * 2. Requirements
+ *
  * ###
  *
- * 2. Decide tiny aspects and limitations: Business and data requirements,
+ * 3. Decide tiny aspects and limitations: Business and data requirements,
  * responsibilities and scope, domain specific feature needs.
  *
  * Required
@@ -35,18 +37,18 @@
  *
  * ###
  *
- * 3. Define input/output of aspects (data types, structures, results)
- * 4. Define function signatures (parameters, variants)
+ * 4. Define input/output of aspects (data types, structures, results)
+ * 5. Define function signatures (parameters, variants)
  *
  * Pseudo-type annotations similar to TypeScript/Flow:
  * - getArrow(string text): {hasArrow: boolean, position: 'start'|'end'}
  * - hasArrow(string text): boolean
- * - startsWithArrow(string text): boolean
- * - endsWithArrow(string text): boolean
+ * - hasStartArrow(string text): boolean
+ * - hasEndArrow(string text): boolean
  *
  * ###
  *
- * 5. Define edge test cases for tiny aspects (including misuse and expected fails).
+ * 6. Define edge test cases for tiny aspects (including misuse and expected fails).
  * For sake of simplicity, no other data types have been considered here.
  *
  * - ---------- : ----- : --------------

@@ -26,9 +26,7 @@ class TermTextSearch {
   }
 
   isEmpty(input) {
-    const text = input.trim();
-
-    return !text || text.length < this.minLength;
+    return !input.trim();
   }
 }
 
