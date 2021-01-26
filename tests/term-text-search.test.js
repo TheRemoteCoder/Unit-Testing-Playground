@@ -18,6 +18,7 @@
  *   - Term can be empty
  *   - Multi-byte support (= No RegEx for a-z possible)
  *   - Arrow symbol constant value = '->'
+ *   - Caret position must be numeric (0-N)
  * - Term = Standalone part of full text
  *   - Boundary by whitespace before and/or after
  *   - No whitespace boundary if first + only part in full text
@@ -50,26 +51,53 @@
  * - --------- : ----- : ------------------------------------
  * - Expect    : Text  : Caret position | Reason
  * - --------- : ----- : ------------------------------------
- * - No result : ''    : *              | Empty
+ * - No result : ''    : ?              | Empty
  * - No result : ' '   : *              | Whitespace
  * - No result : ' A ' : Before         | Whitespace
- * - No result : ' 1 ' : After          | Whitespace – Numeric
- * - Result    : 'A'   : Before         | Match (right)
- * - Result    : '1'   : After          | Match (left) – Numeric
- * - Result    : 'AA'  : Inner          | Match (left + right)
- * - Result    : '#'   : Before         | Match (right) – Special character
+ * - Result    : '👍'   : Before         | Match (right)
+ * - Result    : 'A1'  : Inner          | Match (left + right)
  * - ---------- : ---- : --------------------------------------
  */
 const TermTextSearch = require('./term-text-search');
 
 const instance = new TermTextSearch();
 
-describe('Term text search', () => {
-
-  test('no result for empty text', () => {
-    //const result = instance.getTextAtCaretPosition('');
-    //expect(result).toStrictEqual([]);
+describe('Term text search – Expect results', () => {
+  test('for single letter text (from right)', () => {
+    const result = instance.getTextAtCaretPosition('#', 1);
+    expect(result).toStrictEqual('#');
   });
 
+  test('for within text', () => {
+    const result = instance.getTextAtCaretPosition('A1', 1);
+    expect(result).toStrictEqual('A1');
+  });
+
+  test('for multi-byte text (from left)', () => {
+    const result = instance.getTextAtCaretPosition('👍', 0);
+    expect(result).toStrictEqual('👍');
+  });
+});
+
+describe('Term text search – Expect no results', () => {
+  test('for empty text', () => {
+    const result = instance.getTextAtCaretPosition('', 0);
+    expect(result).toStrictEqual('');
+  });
+
+  test('for whitespace text', () => {
+    const result = instance.getTextAtCaretPosition(' ', 1);
+    expect(result).toStrictEqual('');
+  });
+
+  test('for word surrounded by whitespaces', () => {
+    const result = instance.getTextAtCaretPosition(' A ', 3);
+    expect(result).toStrictEqual('');
+  });
+
+  test('for word surrounded by whitespaces', () => {
+    const result = instance.getTextAtCaretPosition(' A ', 3);
+    expect(result).toStrictEqual('');
+  });
 });
 
