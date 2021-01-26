@@ -76,6 +76,14 @@ describe('Term text search – Expect results', () => {
     const result = instance.getTermAtCaretPosition('👍', 0);
     expect(result).toStrictEqual('👍');
   });
+
+  test('for one of two terms', () => {
+    const result1 = instance.getTermAtCaretPosition('aa bb', 2);
+    const result2 = instance.getTermAtCaretPosition('aa bb', 3);
+
+    expect(result1).toStrictEqual('aa');
+    expect(result2).toStrictEqual('bb');
+  });
 });
 
 describe('Term text search – Expect no results', () => {
