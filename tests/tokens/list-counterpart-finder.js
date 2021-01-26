@@ -1,9 +1,11 @@
 class ListCounterpartFinder {
   /**
-   * @param {Object} wordLists [[string]]
+   * @param {Object} wordLists [[string], [string]]
    */
   constructor(wordLists) {
     this.wordLists = wordLists;
+
+    this.validateWordLists();
   }
 
   getCounterpartWords(text) {
@@ -21,7 +23,7 @@ class ListCounterpartFinder {
       const isMatch = words.some((word) => word === text);
 
       if (isMatch) {
-        result = all;
+        result = all[index ? 0 : 1];
       }
     });
 

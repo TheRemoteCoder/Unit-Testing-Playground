@@ -20,6 +20,7 @@
  * - Return empty list for no results []
  *
  * Optional
+ * - Remove empty values from list
  * - Remove potential duplicates
  * - Order result A-Z
  * - Term must contain '+' or '-' to be part of any list
@@ -56,23 +57,23 @@
 const ListCounterpartFinder = require('./list-counterpart-finder');
 
 const wordLists = [
-  ['A', 'aa', 'A1'],
-  ['b', 'BB', ''],
+  ['A', 'A1', 'aa'],
+  ['b', 'BB'],
 ];
 
 const instance = new ListCounterpartFinder(wordLists);
 
 describe('List Counterpart Finder – Expect results', () => {
-  test('word from list A for word of list B', () => {
+  test('for word from list 0 showing results of list 1', () => {
     const result = instance.getCounterpartWords('aa');
 
     expect(result).toStrictEqual(['b', 'BB']);
   });
 
-  test('word from list B for word of list A', () => {
+  test('for word from list 1 showing results of list 0', () => {
     const result = instance.getCounterpartWords('b');
 
-    expect(result).toStrictEqual(['A', 'aa', 'A1']);
+    expect(result).toStrictEqual(['A', 'A1', 'aa']);
   });
 });
 
