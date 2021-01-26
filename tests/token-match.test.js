@@ -79,11 +79,8 @@ const wordLists = {
 const instance = new TokenMatch();
 
 describe('xxx', () => {
-
   test('', () => {
     //const result = instance.search('');
     //expect(result).toStrictEqual([]);
   });
-
 });
-

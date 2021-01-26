@@ -1,7 +1,7 @@
 class WordSearchTerms {
   constructor(wordsTerms) {
     this.wordsTerms = wordsTerms;
-    this.minLength  = 2;
+    this.minLength = 2;
   }
 
   search(text) {
@@ -14,7 +14,7 @@ class WordSearchTerms {
 
   getTerms(text) {
     const wordsTerms = Object.entries(this.wordsTerms);
-    let result       = [];
+    let result = [];
 
     for (const [key, val] of wordsTerms) {
       if (key.toLowerCase().startsWith(text)) {
@@ -35,6 +35,5 @@ class WordSearchTerms {
     return !text || text.length < this.minLength;
   }
 }
-
 
 module.exports = WordSearchTerms;

@@ -37,11 +37,11 @@
 const WordSearchTerms = require('./word-search-terms');
 
 const wordsTerms = {
-  'Avocado' : ['Brown', 'Lime', 'Green'],
-  'apple'   : ['Red', 'Yellow'],
-  'Apricot' : ['Orange', 'Pink', 'Red'],
-  '草莓'     : ['红', '👌'],
-  ''        : [''],
+  Avocado: ['Brown', 'Lime', 'Green'],
+  apple: ['Red', 'Yellow'],
+  Apricot: ['Orange', 'Pink', 'Red'],
+  草莓: ['红', '👌'],
+  '': [''],
 };
 
 const instance = new WordSearchTerms(wordsTerms);
@@ -77,4 +77,3 @@ describe('Word search - Terms', () => {
     expect(result).toStrictEqual(['红']);
   });
 });
-

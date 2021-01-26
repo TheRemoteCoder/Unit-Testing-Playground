@@ -100,4 +100,3 @@ describe('Term text search – Expect no results', () => {
     expect(result).toStrictEqual('');
   });
 });
-

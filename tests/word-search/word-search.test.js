@@ -18,13 +18,7 @@
  * - 1 result   : 'App'
  */
 const WordSearch = require('./word-search');
-const words = [
-  'apple',
-  'Apricot',
-  'Avocado',
-  '草莓',
-  '',
-];
+const words = ['apple', 'Apricot', 'Avocado', '草莓', ''];
 
 const instance = new WordSearch(words);
 
@@ -53,4 +47,3 @@ describe('Word search', () => {
     expect(result).toStrictEqual(['apple']);
   });
 });
-

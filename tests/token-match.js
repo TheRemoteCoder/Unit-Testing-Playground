@@ -4,6 +4,4 @@ class TokenMatch {
   }
 }
 
-
 module.exports = TokenMatch;
-
