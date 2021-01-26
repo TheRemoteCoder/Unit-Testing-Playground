@@ -8,10 +8,9 @@
 4. Define test case for tiny aspects (including misuse and expected fails)
 5. Write code
 
-
 ## JEST API
 
-```
+```txt
 toStrictEqual // Type + Structure
 toBe          // Prim itives, References
 toEqual       // Deep/Recursive object equality
@@ -19,4 +18,3 @@ toBeTruthy    //
 toBeFalsy     //
 toBeCloseTo   // Float
 ```
-
