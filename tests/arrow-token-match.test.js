@@ -66,6 +66,38 @@ const ArrowTokenMatch = require('./arrow-token-match');
 
 const instance = new ArrowTokenMatch();
 
+describe('Arrow token match – Expect data', () => {
+  test('for token at start', () => {
+    const result = instance.getDetails('->A');
+
+    expect(result).toStrictEqual({
+      hasArrow: true,
+      position: 'start',
+      term: 'A',
+    });
+  });
+
+  test('for token at end', () => {
+    const result = instance.getDetails('a->');
+
+    expect(result).toStrictEqual({
+      hasArrow: true,
+      position: 'end',
+      term: 'a',
+    });
+  });
+
+  test('for empty text', () => {
+    const result = instance.getDetails('');
+
+    expect(result).toStrictEqual({
+      hasArrow: false,
+      position: '',
+      term: '',
+    });
+  });
+});
+
 describe('Arrow token match – Expect true', () => {
   test('for token at start', () => {
     const result = instance.hasArrow('->A');

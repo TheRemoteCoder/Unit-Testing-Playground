@@ -14,20 +14,20 @@ class ArrowTokenMatch {
     };
   }
 
-  getTerm(text) {
-    return text.replace(this.arrowToken, '');
-  }
-
-  getArrow(text) {
+  getDetails(text) {
     if (this.isEmpty(text)) {
       return this.arrowData;
     }
 
     return {
       hasArrow: this.hasArrow(text),
-      position: this.getArrowPosition(),
-      term: this.getTerm(),
+      position: this.getArrowPosition(text),
+      term: this.getTerm(text),
     };
+  }
+
+  getTerm(text) {
+    return text.replace(this.arrowToken, '');
   }
 
   hasArrow(text) {
@@ -35,15 +35,15 @@ class ArrowTokenMatch {
       return false;
     }
 
-    return text.hasStartArrow(text) || this.hasEndArrow(text);
+    return this.hasStartArrow(text) || this.hasEndArrow(text);
   }
 
-  getArrowPosition() {
+  getArrowPosition(text) {
     let position = '';
 
-    if (text.hasStartArrow(text)) {
+    if (this.hasStartArrow(text)) {
       position = this.positionIdentifier.start;
-    } else if (text.hasEndArrow(text)) {
+    } else if (this.hasEndArrow(text)) {
       position = this.positionIdentifier.end;
     }
 
