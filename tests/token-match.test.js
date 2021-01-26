@@ -4,7 +4,7 @@
  * - Arrow : Constant symbol to enter '->'
  * - Term  : User input, any string value, can be empty
  * - Token : Matched part of term (part left, part right, arrow?)
- * - Word  : String value, immutable, given from list (read + match only)
+ * - Text  : String value, immutable, given from list (read + match only)
  *
  * ###
  *
@@ -49,8 +49,8 @@
  * 3. Define function signatures (parameters, variants)
  *
  * Pseudo-type annotations similar to TypeScript/Flow:
- * -
- * -
+ * - startsWithArrow()
+ * - endsWithArrow()
  *
  * ###
  *
