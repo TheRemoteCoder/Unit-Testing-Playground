@@ -27,30 +27,31 @@ class ArrowTokenMatch {
     };
   }
 
-  getTerm(text) {
-    return text.replace(this.arrowToken, '');
-  }
+  getTerm(text) {    
+    const term = this.hasInnerArrow(text) 
+      ? '' 
+      : text.replace(this.arrowToken, '');
 
-  hasArrow(text) {
-    if (this.isEmpty(text)) {
-      return false;
-    }
-
-    return this.hasStartArrow(text) || this.hasEndArrow(text);
+    return term;
   }
 
   getArrowPosition(text) {
+    const identifier = this.positionIdentifier;
     let position = '';
 
     if (this.hasStartArrow(text)) {
-      position = this.positionIdentifier.start;
+      position = identifier.start;
     } else if (this.hasEndArrow(text)) {
-      position = this.positionIdentifier.end;
+      position = identifier.end;
     } else if (this.hasInnerArrow(text)) {
-      position = this.positionIdentifier.inner;
+      position = identifier.inner;
     }
 
     return position;
+  }
+
+  hasArrow(text) {
+    return text.includes(this.arrowToken);
   }
 
   hasStartArrow(text) {
@@ -60,9 +61,9 @@ class ArrowTokenMatch {
   hasEndArrow(text) {
     return text.endsWith(this.arrowToken);
   }
-
+  
   hasInnerArrow(text) {
-    return text.includes(this.arrowToken);
+    return this.hasArrow(text) && (!this.hasStartArrow(text) && !this.hasEndArrow(text));
   }
 
   isEmpty(input) {

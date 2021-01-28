@@ -60,7 +60,7 @@
  * - No results : '->'   : Token (only) – 1)
  * - Results    : '->A'  : Token at start
  * - Results    : 'A->'  : Token at end
- * - Results    : 'A->B' : Token in inner (anywhere; not first/last)
+ * - Results    : 'A->B' : Token an any (inner; could be first/last)
  * - ---------- : ----- : ------------------------------------------
  *
  * 1) Special case - Could be ignored, e.g. require min. length 3
