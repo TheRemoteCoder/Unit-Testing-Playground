@@ -8,7 +8,8 @@
     "watch": "npx jest --watch",
     "watch:all": "npx jest --watchAll",
     "debug": "node --inspect-brk --inspect ./node_modules/jest/bin/jest -i",
-    "lint": "npx eslint \"src/**\"",
+    "format": "prettier \"tests/**/*.js\" --write",
+    "lint": "npx eslint \"tests/**/*.js\"",
     "project:clean": "rm -rf dist",
     "project:reset": "rm -rf node_modules"
   },
@@ -25,6 +26,5 @@
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
     "prettier-eslint": "^11.0.0"
-  },
-  "type": "module"
+  }
 }

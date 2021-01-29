@@ -5,10 +5,10 @@ module.exports = {
   },
   extends: ['airbnb', 'prettier', 'plugin:prettier/recommended'],
   plugins: ['import', 'prettier'],
-  parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 12,
-    sourceType: 'module',
   },
-  rules: {},
+  rules: {
+    'class-methods-use-this': false,
+  },
 };

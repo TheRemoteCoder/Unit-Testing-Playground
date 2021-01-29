@@ -75,9 +75,7 @@ const instance = new TermTextReplace();
 
 const text = 'Lorem ipsum dolor sit amet';
 
-
 describe('Term text replace – Expect results', () => {
-  
   test('for single letter text', () => {
     const result = instance.getReplacedText('A', 'B', 1);
     expect(result).toStrictEqual('B');
@@ -95,4 +93,3 @@ describe('Term text search – Expect no results', () => {
     expect(result).toStrictEqual('');
   });
 });
-

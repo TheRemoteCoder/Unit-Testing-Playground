@@ -27,10 +27,8 @@ class ArrowTokenMatch {
     };
   }
 
-  getTerm(text) {    
-    const term = this.hasInnerArrow(text) 
-      ? '' 
-      : text.replace(this.arrowToken, '');
+  getTerm(text) {
+    const term = this.hasInnerArrow(text) ? '' : text.replace(this.arrowToken, '');
 
     return term;
   }
@@ -61,9 +59,9 @@ class ArrowTokenMatch {
   hasEndArrow(text) {
     return text.endsWith(this.arrowToken);
   }
-  
+
   hasInnerArrow(text) {
-    return this.hasArrow(text) && (!this.hasStartArrow(text) && !this.hasEndArrow(text));
+    return this.hasArrow(text) && !this.hasStartArrow(text) && !this.hasEndArrow(text);
   }
 
   isEmpty(input) {
